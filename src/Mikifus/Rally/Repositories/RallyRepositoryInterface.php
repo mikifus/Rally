@@ -7,11 +7,11 @@
  *
  */
 
-namespace Fenos\Rally\Repositories;
+namespace Mikifus\Rally\Repositories;
 
 /**
  * Interface RallyRepositoryInterface
- * @package Fenos\Rally\Repositories
+ * @package Mikifus\Rally\Repositories
  */
 interface RallyRepositoryInterface {
 

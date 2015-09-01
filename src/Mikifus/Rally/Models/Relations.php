@@ -7,7 +7,7 @@
  *
  */
 
-namespace Fenos\Rally\Models;
+namespace Mikifus\Rally\Models;
 
 
 trait Relations {
@@ -16,20 +16,20 @@ trait Relations {
     {
         if (\Config::get('rally::polymorphic') === false)
         {
-            return $this->hasMany('Fenos\Rally\Models\Follower','followed_id');
+            return $this->hasMany('Mikifus\Rally\Models\Follower','followed_id');
         }
 
-        return $this->morphMany('Fenos\Rally\Models\Follower','follower');
+        return $this->morphMany('Mikifus\Rally\Models\Follower','follower');
     }
 
     public function followed()
     {
         if (\Config::get('rally::polymorphic') === false)
         {
-            return $this->hasMany('Fenos\Rally\Models\Follower','follower_id');
+            return $this->hasMany('Mikifus\Rally\Models\Follower','follower_id');
         }
 
-        return $this->morphMany('Fenos\Rally\Models\Follower','follower');
+        return $this->morphMany('Mikifus\Rally\Models\Follower','follower');
     }
 
 }

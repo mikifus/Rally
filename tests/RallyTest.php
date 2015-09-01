@@ -7,7 +7,7 @@
  *
  */
 
-use Fenos\Rally\Rally;
+use Mikifus\Rally\Rally;
 use Mockery as m;
 
 /**
@@ -34,7 +34,7 @@ class RallyTest extends PHPUnit_Framework_TestCase {
     public function setUp()
     {
         $this->rally = new Rally(
-            $this->rallyRepo = m::mock('Fenos\Rally\Repositories\RallyRepositoryInterface'),
+            $this->rallyRepo = m::mock('Mikifus\Rally\Repositories\RallyRepositoryInterface'),
             $this->config = m::mock('Illuminate\Config\Repository')
         );
 
@@ -48,7 +48,7 @@ class RallyTest extends PHPUnit_Framework_TestCase {
 
     public function test_follower_selector_polymorphic()
     {
-        $mockRally = m::mock('Fenos\Rally\Rally[lightValidation]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[lightValidation]',[$this->rallyRepo,$this->config]);
 
         $mockRally->shouldReceive('lightValidation')
             ->once()
@@ -62,12 +62,12 @@ class RallyTest extends PHPUnit_Framework_TestCase {
 
         $result = $mockRally->follower('User',1);
 
-        $this->assertInstanceOf('Fenos\Rally\Rally',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Rally',$result);
     }
 
     public function test_follower_selector_NOT_polymorphic()
     {
-        $mockRally = m::mock('Fenos\Rally\Rally[lightValidation]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[lightValidation]',[$this->rallyRepo,$this->config]);
 
         $mockRally->shouldReceive('lightValidation')
             ->once()
@@ -81,7 +81,7 @@ class RallyTest extends PHPUnit_Framework_TestCase {
 
         $result = $mockRally->follower(1);
 
-        $this->assertInstanceOf('Fenos\Rally\Rally',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Rally',$result);
     }
 
     public function test_follow_someone_polymorphic()
@@ -94,7 +94,7 @@ class RallyTest extends PHPUnit_Framework_TestCase {
             'followed_id'   => 2
         ];
 
-        $mockRally = m::mock('Fenos\Rally\Rally[lightValidation,isFollowerOf,checkFollowerInformation]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[lightValidation,isFollowerOf,checkFollowerInformation]',[$this->rallyRepo,$this->config]);
 
         $mockRally->setFollowerPolymorpich('User',1);
 
@@ -120,11 +120,11 @@ class RallyTest extends PHPUnit_Framework_TestCase {
         $this->rallyRepo->shouldReceive('follow')
             ->once()
             ->with($createFollowRelation)
-            ->andReturn(m::mock('Fenos\Rally\Models\Follower'));
+            ->andReturn(m::mock('Mikifus\Rally\Models\Follower'));
 
         $result = $mockRally->follow('Team',2);
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_follow_someone_NOT_polymorphic()
@@ -135,7 +135,7 @@ class RallyTest extends PHPUnit_Framework_TestCase {
             'followed_id'   => 2
         ];
 
-        $mockRally = m::mock('Fenos\Rally\Rally[lightValidation,isFollowerOf,checkFollowerInformation]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[lightValidation,isFollowerOf,checkFollowerInformation]',[$this->rallyRepo,$this->config]);
 
         $mockRally->setFollower(1);
 
@@ -161,11 +161,11 @@ class RallyTest extends PHPUnit_Framework_TestCase {
         $this->rallyRepo->shouldReceive('follow')
             ->once()
             ->with($createFollowRelation)
-            ->andReturn(m::mock('Fenos\Rally\Models\Follower'));
+            ->andReturn(m::mock('Mikifus\Rally\Models\Follower'));
 
         $result = $mockRally->follow(2,false);
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_the_check_if_is_follower_of_someone_polymorphic()
@@ -178,7 +178,7 @@ class RallyTest extends PHPUnit_Framework_TestCase {
             'followed_id'   => 2
         ];
 
-        $mockRally = m::mock('Fenos\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
 
         $mockRally->setFollowerPolymorpich('User',1);
 
@@ -194,11 +194,11 @@ class RallyTest extends PHPUnit_Framework_TestCase {
         $this->rallyRepo->shouldReceive('isFollower')
             ->once()
             ->with($checkFollowRelation)
-            ->andReturn(m::mock('Fenos\Rally\Models\Follower'));
+            ->andReturn(m::mock('Mikifus\Rally\Models\Follower'));
 
         $result = $mockRally->isFollowerOf('Team',2);
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_the_check_if_is_follower_of_someone_NOT_polymorphic()
@@ -209,7 +209,7 @@ class RallyTest extends PHPUnit_Framework_TestCase {
             'followed_id'   => 2
         ];
 
-        $mockRally = m::mock('Fenos\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
 
         $mockRally->setFollower(1);
 
@@ -225,11 +225,11 @@ class RallyTest extends PHPUnit_Framework_TestCase {
         $this->rallyRepo->shouldReceive('isFollower')
             ->once()
             ->with($checkFollowRelation)
-            ->andReturn(m::mock('Fenos\Rally\Models\Follower'));
+            ->andReturn(m::mock('Mikifus\Rally\Models\Follower'));
 
         $result = $mockRally->isFollowerOf(2);
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_the_check_if_is_follower_of_someone__polymorphic_on_not_found()
@@ -240,7 +240,7 @@ class RallyTest extends PHPUnit_Framework_TestCase {
             'followed_id'   => 2
         ];
 
-        $mockRally = m::mock('Fenos\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
 
         $mockRally->setFollower(1);
 
@@ -265,14 +265,14 @@ class RallyTest extends PHPUnit_Framework_TestCase {
 
     public function test_unfollow_someone()
     {
-        $mockRally = m::mock('Fenos\Rally\Rally[isFollowerOf]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[isFollowerOf]',[$this->rallyRepo,$this->config]);
 
         $mockRally->setFollowerPolymorpich('User',1);
 
         $mockRally->shouldReceive('isFollowerOf')
             ->once()
             ->with('Team',2)
-            ->andReturn(m::mock('Fenos\Rally\Models\Follower'));
+            ->andReturn(m::mock('Mikifus\Rally\Models\Follower'));
 
         // test to review
         $this->rallyRepo->shouldReceive('unFollow')
@@ -285,11 +285,11 @@ class RallyTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException Fenos\Rally\Exceptions\FollowerNotFoundException
+     * @expectedException Mikifus\Rally\Exceptions\FollowerNotFoundException
      * */
     public function test_unfollow_someone_but_relation_not_found()
     {
-        $mockRally = m::mock('Fenos\Rally\Rally[isFollowerOf]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[isFollowerOf]',[$this->rallyRepo,$this->config]);
 
         $mockRally->setFollowerPolymorpich('User',1);
 
@@ -309,7 +309,7 @@ class RallyTest extends PHPUnit_Framework_TestCase {
           'follower_id'   => 1
         ];
 
-        $mockRally = m::mock('Fenos\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
 
         $mockRally->setFollowerPolymorpich('User',1);
 
@@ -320,11 +320,11 @@ class RallyTest extends PHPUnit_Framework_TestCase {
         $this->rallyRepo->shouldReceive('listsFollowers')
             ->once()
             ->with($followerInfo,[])
-            ->andReturn(m::mock('Fenos\Rally\Models\Follower'));
+            ->andReturn(m::mock('Mikifus\Rally\Models\Follower'));
 
         $result = $mockRally->getLists();
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_get_lists_followers_NOT_polymorphic()
@@ -333,7 +333,7 @@ class RallyTest extends PHPUnit_Framework_TestCase {
             'follower_id'   => 1
         ];
 
-        $mockRally = m::mock('Fenos\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
 
         $mockRally->setFollower(1);
 
@@ -344,11 +344,11 @@ class RallyTest extends PHPUnit_Framework_TestCase {
         $this->rallyRepo->shouldReceive('listsFollowers')
             ->once()
             ->with($followerInfo,[])
-            ->andReturn(m::mock('Fenos\Rally\Models\Follower'));
+            ->andReturn(m::mock('Mikifus\Rally\Models\Follower'));
 
         $result = $mockRally->getLists();
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_get_lists_following_polymorphic()
@@ -358,7 +358,7 @@ class RallyTest extends PHPUnit_Framework_TestCase {
             'follower_id'   => 1
         ];
 
-        $mockRally = m::mock('Fenos\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
 
         $mockRally->setFollowerPolymorpich('User',1);
 
@@ -369,11 +369,11 @@ class RallyTest extends PHPUnit_Framework_TestCase {
         $this->rallyRepo->shouldReceive('listsFollowing')
             ->once()
             ->with($followerInfo,[])
-            ->andReturn(m::mock('Fenos\Rally\Models\Follower'));
+            ->andReturn(m::mock('Mikifus\Rally\Models\Follower'));
 
         $result = $mockRally->getListsFollowing();
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_get_lists_following_NOT_polymorphic()
@@ -382,7 +382,7 @@ class RallyTest extends PHPUnit_Framework_TestCase {
             'follower_id'   => 1
         ];
 
-        $mockRally = m::mock('Fenos\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
 
         $mockRally->setFollower(1);
 
@@ -393,11 +393,11 @@ class RallyTest extends PHPUnit_Framework_TestCase {
         $this->rallyRepo->shouldReceive('listsFollowing')
             ->once()
             ->with($followerInfo,[])
-            ->andReturn(m::mock('Fenos\Rally\Models\Follower'));
+            ->andReturn(m::mock('Mikifus\Rally\Models\Follower'));
 
         $result = $mockRally->getListsFollowing();
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_get_numbers_followers_polymorphic()
@@ -407,7 +407,7 @@ class RallyTest extends PHPUnit_Framework_TestCase {
             'follower_id'   => 1
         ];
 
-        $mockRally = m::mock('Fenos\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
 
         $mockRally->setFollowerPolymorpich('User',1);
 
@@ -418,11 +418,11 @@ class RallyTest extends PHPUnit_Framework_TestCase {
         $this->rallyRepo->shouldReceive('countFollowers')
             ->once()
             ->with($followerInfo)
-            ->andReturn(m::mock('Fenos\Rally\Models\Follower'));
+            ->andReturn(m::mock('Mikifus\Rally\Models\Follower'));
 
         $result = $mockRally->count();
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_get_numbers_followers_NOT_polymorphic()
@@ -431,7 +431,7 @@ class RallyTest extends PHPUnit_Framework_TestCase {
             'follower_id'   => 1
         ];
 
-        $mockRally = m::mock('Fenos\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
 
         $mockRally->setFollower(1);
 
@@ -442,11 +442,11 @@ class RallyTest extends PHPUnit_Framework_TestCase {
         $this->rallyRepo->shouldReceive('countFollowers')
             ->once()
             ->with($followerInfo)
-            ->andReturn(m::mock('Fenos\Rally\Models\Follower'));
+            ->andReturn(m::mock('Mikifus\Rally\Models\Follower'));
 
         $result = $mockRally->count();
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_get_numbers_following_polymorphic()
@@ -456,7 +456,7 @@ class RallyTest extends PHPUnit_Framework_TestCase {
             'follower_id'   => 1
         ];
 
-        $mockRally = m::mock('Fenos\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
 
         $mockRally->setFollowerPolymorpich('User',1);
 
@@ -467,11 +467,11 @@ class RallyTest extends PHPUnit_Framework_TestCase {
         $this->rallyRepo->shouldReceive('countFollowing')
             ->once()
             ->with($followerInfo)
-            ->andReturn(m::mock('Fenos\Rally\Models\Follower'));
+            ->andReturn(m::mock('Mikifus\Rally\Models\Follower'));
 
         $result = $mockRally->countFollowing();
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_get_numbers_following_NOT_polymorphic()
@@ -480,7 +480,7 @@ class RallyTest extends PHPUnit_Framework_TestCase {
             'follower_id'   => 1
         ];
 
-        $mockRally = m::mock('Fenos\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
+        $mockRally = m::mock('Mikifus\Rally\Rally[checkFollowerInformation]',[$this->rallyRepo,$this->config]);
 
         $mockRally->setFollower(1);
 
@@ -491,11 +491,11 @@ class RallyTest extends PHPUnit_Framework_TestCase {
         $this->rallyRepo->shouldReceive('countFollowing')
             ->once()
             ->with($followerInfo)
-            ->andReturn(m::mock('Fenos\Rally\Models\Follower'));
+            ->andReturn(m::mock('Mikifus\Rally\Models\Follower'));
 
         $result = $mockRally->countFollowing();
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_lightValidation_for_polymorphic()

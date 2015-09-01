@@ -7,7 +7,7 @@
  *
  */
 
-namespace Fenos\Rally\Models;
+namespace Mikifus\Rally\Models;
 
 
 use Illuminate\Database\Eloquent\Model;

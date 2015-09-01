@@ -7,17 +7,17 @@
  *
  */
 
-namespace Fenos\Rally;
+namespace Mikifus\Rally;
 
-use Fenos\Rally\Exceptions\AlreadyFollowerException;
-use Fenos\Rally\Exceptions\FollowerNotFoundException;
-use Fenos\Rally\Repositories\RallyRepositoryInterface;
+use Mikifus\Rally\Exceptions\AlreadyFollowerException;
+use Mikifus\Rally\Exceptions\FollowerNotFoundException;
+use Mikifus\Rally\Repositories\RallyRepositoryInterface;
 use Illuminate\Config\Repository;
 
 
 /**
  * Class Rally
- * @package Fenos\Rally
+ * @package Mikifus\Rally
  */
 class Rally {
 

@@ -7,15 +7,15 @@
  *
  */
 
-namespace Fenos\Rally\Repositories;
+namespace Mikifus\Rally\Repositories;
 
 
-use Fenos\Rally\Models\Follower;
+use Mikifus\Rally\Models\Follower;
 use Illuminate\Database\DatabaseManager;
 
 /**
  * Class RallyPolymorphicRepository
- * @package Fenos\Rally\Repositories
+ * @package Mikifus\Rally\Repositories
  */
 class RallyPolymorphicRepository extends RallyRepository implements RallyRepositoryInterface {
 
@@ -25,7 +25,7 @@ class RallyPolymorphicRepository extends RallyRepository implements RallyReposit
     protected $db;
 
     /**
-     * @var \Fenos\Rally\Models\Follower
+     * @var \Mikifus\Rally\Models\Follower
      */
     private $follow;
 

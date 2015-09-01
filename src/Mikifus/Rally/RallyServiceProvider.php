@@ -1,6 +1,6 @@
-<?php namespace Fenos\Rally;
+<?php namespace Mikifus\Rally;
 
-use Fenos\Rally\Models\Follower;
+use Mikifus\Rally\Models\Follower;
 use Illuminate\Support\ServiceProvider;
 
 class RallyServiceProvider extends ServiceProvider {
@@ -19,7 +19,7 @@ class RallyServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('fenos/rally');
+        $this->package('mikifus/rally');
     }
 
     /**
@@ -52,13 +52,13 @@ class RallyServiceProvider extends ServiceProvider {
             if ($this->app['config']->get('rally::polymorphic') !== false)
             {
                 if (($bindClass = $this->app['config']->get('rally::polymorphic.repository')) == null) {
-                    $bindClass = "\Fenos\Rally\Repositories\RallyPolymorphicRepository";
+                    $bindClass = "\Mikifus\Rally\Repositories\RallyPolymorphicRepository";
                 }
             }
             else
             {
                 if (($bindClass = $this->app['config']->get('rally::repository')) == null) {
-                    $bindClass = "\Fenos\Rally\Repositories\RallyRepository";
+                    $bindClass = "\Mikifus\Rally\Repositories\RallyRepository";
                 }
             }
 
@@ -68,14 +68,7 @@ class RallyServiceProvider extends ServiceProvider {
            );
         });
 
-        $this->app->bind('Fenos\Rally\Repositories\RallyRepositoryInterface','rally.repository');
-
-//        $this->app->bind('rally.polymorphic.repository', function($app){
-//            return new Repositories\RallyPolymorphicRepository(
-//                new Follower(),
-//                $app['db']
-//            );
-//        });
+        $this->app->bind('Mikifus\Rally\Repositories\RallyRepositoryInterface','rally.repository');
     }
 
     /**
@@ -85,7 +78,7 @@ class RallyServiceProvider extends ServiceProvider {
      */
     public function provides()
     {
-        return array();
+        return [];
     }
 
 }

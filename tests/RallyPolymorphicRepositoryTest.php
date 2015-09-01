@@ -7,7 +7,7 @@
  *
  */
 
-use Fenos\Rally\Repositories\RallyPolymorphicRepository;
+use Mikifus\Rally\Repositories\RallyPolymorphicRepository;
 use Mockery as m;
 
 class RallyPolymorphicRepositoryTest extends PHPUnit_Framework_TestCase {
@@ -33,7 +33,7 @@ class RallyPolymorphicRepositoryTest extends PHPUnit_Framework_TestCase {
         $this->mockEloquent = m::mock('Illuminate\Database\Eloquent\Model');
 
         $this->rallyRepo = new RallyPolymorphicRepository(
-            $this->follower = m::mock('Fenos\Rally\Models\Follower'),
+            $this->follower = m::mock('Mikifus\Rally\Models\Follower'),
             $this->db = m::mock('Illuminate\Database\DatabaseManager')
         );
     }
@@ -87,7 +87,7 @@ class RallyPolymorphicRepositoryTest extends PHPUnit_Framework_TestCase {
             'follower_id'   => 1,
         ];
 
-        $mockRepo = m::mock('Fenos\Rally\Repositories\RallyPolymorphicRepository[addFilters]',[$this->follower,$this->db]);
+        $mockRepo = m::mock('Mikifus\Rally\Repositories\RallyPolymorphicRepository[addFilters]',[$this->follower,$this->db]);
 
         $this->follower->shouldReceive('with')
             ->once()
@@ -133,7 +133,7 @@ class RallyPolymorphicRepositoryTest extends PHPUnit_Framework_TestCase {
 
         $result = $mockRepo->listsFollowers($listsFollowRelation,[]);
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_count_lists_of_following()
@@ -144,7 +144,7 @@ class RallyPolymorphicRepositoryTest extends PHPUnit_Framework_TestCase {
             'follower_id'   => 1,
         ];
 
-        $mockRepo = m::mock('Fenos\Rally\Repositories\RallyPolymorphicRepository[addFilters]',[$this->follower,$this->db]);
+        $mockRepo = m::mock('Mikifus\Rally\Repositories\RallyPolymorphicRepository[addFilters]',[$this->follower,$this->db]);
 
         $this->follower->shouldReceive('with')
             ->once()
@@ -172,7 +172,7 @@ class RallyPolymorphicRepositoryTest extends PHPUnit_Framework_TestCase {
 
         $result = $mockRepo->listsFollowing($listsFollowRelation,[]);
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_count_followers()
@@ -208,7 +208,7 @@ class RallyPolymorphicRepositoryTest extends PHPUnit_Framework_TestCase {
 
         $result = $this->rallyRepo->countFollowers($countFollowRelation);
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_count_following()
@@ -244,7 +244,7 @@ class RallyPolymorphicRepositoryTest extends PHPUnit_Framework_TestCase {
 
         $result = $this->rallyRepo->countFollowing($countFollowRelation);
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 }
 

@@ -34,8 +34,8 @@ class RallyRepositoryTest extends PHPUnit_Framework_TestCase {
     {
         $this->mockEloquent = m::mock('Illuminate\Database\Eloquent\Model');
 
-        $this->rallyRepo = new \Fenos\Rally\Repositories\RallyRepository(
-          $this->follower = m::mock('Fenos\Rally\Models\Follower'),
+        $this->rallyRepo = new \Mikifus\Rally\Repositories\RallyRepository(
+          $this->follower = m::mock('Mikifus\Rally\Models\Follower'),
             $this->db = m::mock('Illuminate\Database\DatabaseManager')
         );
     }
@@ -63,7 +63,7 @@ class RallyRepositoryTest extends PHPUnit_Framework_TestCase {
 
         $result = $this->rallyRepo->follow($createFollowRelation);
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_Unfollow_someone()
@@ -98,7 +98,7 @@ class RallyRepositoryTest extends PHPUnit_Framework_TestCase {
 
         $result = $this->rallyRepo->isFollower(['follower_id' =>1,'followed_id' => 2]);
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_listsFollowers()
@@ -108,7 +108,7 @@ class RallyRepositoryTest extends PHPUnit_Framework_TestCase {
             'follower_id'   => 1
         ];
 
-        $mockRepo = m::mock('Fenos\Rally\Repositories\RallyRepository[addFlters]',[$this->follower,$this->db]);
+        $mockRepo = m::mock('Mikifus\Rally\Repositories\RallyRepository[addFlters]',[$this->follower,$this->db]);
 
         $this->follower->shouldReceive('with')
             ->once()
@@ -149,7 +149,7 @@ class RallyRepositoryTest extends PHPUnit_Framework_TestCase {
 
         $result = $mockRepo->listsFollowers($createFollowRelation,[]);
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
 
     }
 
@@ -160,7 +160,7 @@ class RallyRepositoryTest extends PHPUnit_Framework_TestCase {
             'follower_id'   => 1
         ];
 
-        $mockRepo = m::mock('Fenos\Rally\Repositories\RallyRepository[addFlters]',[$this->follower,$this->db]);
+        $mockRepo = m::mock('Mikifus\Rally\Repositories\RallyRepository[addFlters]',[$this->follower,$this->db]);
 
         $this->follower->shouldReceive('with')
             ->once()
@@ -182,7 +182,7 @@ class RallyRepositoryTest extends PHPUnit_Framework_TestCase {
 
         $result = $mockRepo->listsFollowing($createFollowRelation,[]);
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_count_followers()
@@ -212,7 +212,7 @@ class RallyRepositoryTest extends PHPUnit_Framework_TestCase {
 
         $result = $this->rallyRepo->countFollowers($createFollowRelation);
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
     public function test_count_following()
@@ -242,7 +242,7 @@ class RallyRepositoryTest extends PHPUnit_Framework_TestCase {
 
         $result = $this->rallyRepo->countFollowing($createFollowRelation);
 
-        $this->assertInstanceOf('Fenos\Rally\Models\Follower',$result);
+        $this->assertInstanceOf('Mikifus\Rally\Models\Follower',$result);
     }
 
 }

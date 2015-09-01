@@ -7,9 +7,9 @@
  *
  */
 
-namespace Fenos\Rally\Exceptions;
+namespace Mikifus\Rally\Exceptions;
 
 
-class FollowerNotFoundException extends \Exception {
+class AlreadyFollowerException extends \Exception {
 
 }

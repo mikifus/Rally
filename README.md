@@ -1,10 +1,10 @@
 Rally
 =====
 
-[![Build Status](https://travis-ci.org/fenos/Rally.svg?branch=master)](https://travis-ci.org/fenos/Rally)
-[![ProjectStatus](http://stillmaintained.com/fenos/Rally.png)](http://stillmaintained.com/fenos/Rally)
-[![Latest Stable Version](https://poser.pugx.org/fenos/rally/v/stable.png)](https://packagist.org/packages/fenos/rally)
-[![License](https://poser.pugx.org/fenos/rally/license.png)](https://packagist.org/packages/fenos/rally)
+[![Build Status](https://travis-ci.org/mikifus/Rally.svg?branch=master)](https://travis-ci.org/mikifus/Rally)
+[![ProjectStatus](http://stillmaintained.com/mikifus/Rally.png)](http://stillmaintained.com/mikifus/Rally)
+[![Latest Stable Version](https://poser.pugx.org/mikifus/rally/v/stable.png)](https://packagist.org/packages/mikifus/rally)
+[![License](https://poser.pugx.org/mikifus/rally/license.png)](https://packagist.org/packages/mikifus/rally)
 
 Follow, Let Follow you, Follow with Rally. Rally is a plugin that implement in your application the follow system. It is quick to implement on your laravel project.
 It give you the freedom to create your own followers system. It is can be polymorphic, so you can follow anybody or anything you want. The package has been released for laravel 4.*
@@ -28,7 +28,7 @@ It give you the freedom to create your own followers system. It is can be polymo
 Add it on your composer.json
 
 ~~~
-"fenos/rally": "1.0.*"
+"mikifus/rally": "1.0.*"
 ~~~
 
 and run **composer update**
@@ -41,13 +41,13 @@ Add the following string to **app/config/app.php**
 **Providers array:**
 
 ~~~
-'Fenos\Rally\RallyServiceProvider'
+'Mikifus\Rally\RallyServiceProvider'
 ~~~
 
 **Aliases array:**
 
 ~~~
-'Rally'    => 'Fenos\Rally\Facades\Rally'
+'Rally'    => 'Mikifus\Rally\Facades\Rally'
 ~~~
 
 ### Step 3 ###
@@ -57,7 +57,7 @@ Add the following string to **app/config/app.php**
 Make sure that your settings on **app/config/database.php** are correct, then make the migration typing:
 
 ~~~
-php artisan migrate --package="fenos/rally"
+php artisan migrate --package="mikifus/rally"
 ~~~
 
 ### Step 4 ###
@@ -70,7 +70,7 @@ Rally comes with some relations already setted for you, you just need to insert 
 
 class User extends Eloquent
 {
-    use \Fenos\Rally\Models\Relations;
+    use \Mikifus\Rally\Models\Relations;
 }
 
 ~~~
@@ -86,7 +86,7 @@ The key to enable or disable the polymorphic relation is in the configuration fi
 if instead you want to keep the plugin as 1 model but the `User` model is not your main model change it ;)
 
 ~~~
-php artisan config:publish fenos/rally
+php artisan config:publish mikifus/rally
 ~~~
 
 
@@ -99,7 +99,7 @@ try
 {
     Rally::follower('User',$user_id)->follow('Team',$team_id);
 }
-catch(\Fenos\Rally\Exceptions\AlreadyFollowerException $e)
+catch(\Mikifus\Rally\Exceptions\AlreadyFollowerException $e)
 {
     // is already fan
 }
@@ -112,7 +112,7 @@ try
 {
     Rally::follower($user_id)->follow($user_id);
 }
-catch(\Fenos\Rally\Exceptions\AlreadyFollowerException $e)
+catch(\Mikifus\Rally\Exceptions\AlreadyFollowerException $e)
 {
     // is already follower
 }
@@ -132,7 +132,7 @@ try
 {
     Rally::follower('User',$user_id)->unFollow('Team',$team_id);
 }
-catch(\Fenos\Rally\Exceptions\FollowerNotFoundException $e)
+catch(\Mikifus\Rally\Exceptions\FollowerNotFoundException $e)
 {
     // the user already doesn't follow him
 }
@@ -144,7 +144,7 @@ try
 {
     Rally::follower($user_id)->unFollow($user_id);
 }
-catch(\Fenos\Rally\Exceptions\FollowerNotFoundException $e)
+catch(\Mikifus\Rally\Exceptions\FollowerNotFoundException $e)
 {
     // the user already doesn't follow him
 }

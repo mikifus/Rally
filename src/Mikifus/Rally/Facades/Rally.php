@@ -1,6 +1,6 @@
 <?php
 
-namespace Fenos\Rally\Facades;
+namespace Mikifus\Rally\Facades;
 
 
 use Illuminate\Support\Facades\Facade;
