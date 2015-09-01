@@ -24,8 +24,8 @@ class RallyServiceProvider extends ServiceProvider {
 
         // ### 5.1 ###
         $this->publishes([
-            base_path('vendor/mikifus/Rally/src/config/config.php') => config_path('messenger.php'),
-            base_path('vendor/mikifus/Rally/src/migrations') => base_path('database/migrations'),
+            base_path('vendor/mikifus/rally/src/config/config.php') => config_path('messenger.php'),
+            base_path('vendor/mikifus/rally/src/migrations') => base_path('database/migrations'),
         ]);
     }
 
