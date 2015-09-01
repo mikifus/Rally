@@ -19,7 +19,14 @@ class RallyServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('mikifus/rally');
+        // ### 4.2 ###
+        // $this->package('mikifus/rally');
+
+        // ### 5.1 ###
+        $this->publishes([
+            base_path('vendor/mikifus/Rally/src/config/config.php') => config_path('messenger.php'),
+            base_path('vendor/mikifus/Rally/src/migrations') => base_path('database/migrations'),
+        ]);
     }
 
     /**
